@@ -1,10 +1,16 @@
 cmake_minimum_required(VERSION 3.7.1)
 
-project(hello-world)
+project(hello-world C)
+
+# if (CMAKE_C_COMPILER_ID MATCHES "GNU|Clang")
+#   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -ansi -pedantic -Wall")
+# endif()
 
 set(SOURCE_FILES main.c)
 
 message(STATUS "This is BINARY dir " ${PROJECT_BINARAY_DIR})
 message(STATUS "This is SOURCE dir " ${PROJECT_SOURCE_DIR})
 
+add_library(leptjson leptjson.c)
 add_executable(hello-world ${SOURCE_FILES})
+target_link_libraries(hello-world leptjson)
